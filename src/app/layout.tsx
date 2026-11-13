@@ -9,22 +9,22 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Nimesh & Dilhani — Traditional Sri Lankan Wedding Invitation",
+  title: "Gihani & Ashan — Traditional Sri Lankan Wedding Invitation",
   description:
-    "Cordially inviting you to the traditional Sri Lankan Poruwa wedding celebration of Nimesh & Dilhani at Hilton Colombo.",
+    "Cordially inviting you to the traditional Sri Lankan Poruwa wedding celebration of Gihani & Ashan at Sopana Mount View Hotel on January 21, 2027.",
   keywords: [
     "Sri Lankan Wedding",
     "Poruwa Ceremony",
     "Sinhala Wedding Invitation",
     "Traditional Wedding",
-    "Hilton Colombo",
-    "Nimesh and Dilhani",
+    "Sopana Mount View Hotel",
+    "Gihani and Ashan",
   ],
-  authors: [{ name: "Nimesh & Dilhani" }],
+  authors: [{ name: "Gihani & Ashan" }],
   openGraph: {
-    title: "Nimesh & Dilhani — Wedding Invitation (සාදර ඇරයුමයි)",
+    title: "Gihani & Ashan — Wedding Invitation (සාදර ඇරයුමයි)",
     description:
-      "Join us as we celebrate our sacred vows on the traditional Golden Poruwa on March 13, 2027 at The Grand Ballroom, Hilton Colombo.",
+      "Join us as we celebrate our sacred vows on the traditional Golden Poruwa on January 21, 2027 at Sopana Mount View Hotel.",
     type: "website",
     locale: "si_LK",
     alternateLocale: "en_US",
@@ -33,15 +33,18 @@ export const metadata: Metadata = {
         url: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1200&h=630&q=80",
         width: 1200,
         height: 630,
-        alt: "Nimesh & Dilhani Wedding Invitation",
+        alt: "Gihani & Ashan Wedding Invitation",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nimesh & Dilhani — Wedding Invitation",
-    description: "Traditional Sri Lankan Poruwa Wedding Invitation on March 13, 2027.",
-    images: ["https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1200&h=630&q=80"],
+    title: "Gihani & Ashan — Wedding Invitation",
+    description:
+      "Traditional Sri Lankan Poruwa Wedding Invitation on January 21, 2027.",
+    images: [
+      "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1200&h=630&q=80",
+    ],
   },
 };
 
@@ -53,24 +56,24 @@ export default function RootLayout({
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Event",
-    name: "Wedding of Nimesh & Dilhani",
-    startDate: "2027-03-13T17:00:00+05:30",
-    endDate: "2027-03-13T23:30:00+05:30",
+    name: "Wedding of Gihani & Ashan",
+    startDate: "2027-01-21T08:30:00+05:30",
+    endDate: "2027-01-21T23:30:00+05:30",
     eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
     eventStatus: "https://schema.org/EventScheduled",
     location: {
       "@type": "Place",
-      name: "Hilton Colombo (Grand Ballroom)",
+      name: "Sopana Mount View Hotel",
       address: {
         "@type": "PostalAddress",
-        streetAddress: "No. 2, Sir Chittampalam A Gardiner Mawatha",
-        addressLocality: "Colombo",
-        postalCode: "00200",
+        streetAddress: "Sopana Mount View Hotel, Nuwara Eliya Road, Padinawela",
+        addressLocality: "Nuwara Eliya",
+        postalCode: "22200",
         addressCountry: "LK",
       },
     },
     description:
-      "Traditional Sri Lankan Poruwa wedding ceremony and banquet celebration of Nimesh and Dilhani.",
+      "Traditional Sri Lankan Poruwa wedding ceremony and banquet celebration of Gihani and Ashan.",
   };
 
   return (

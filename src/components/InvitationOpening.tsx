@@ -8,7 +8,10 @@ interface InvitationOpeningProps {
   onOpen: () => void;
 }
 
-export const InvitationOpening: React.FC<InvitationOpeningProps> = ({ isOpen, onOpen }) => {
+export const InvitationOpening: React.FC<InvitationOpeningProps> = ({
+  isOpen,
+  onOpen,
+}) => {
   const { lang, setLang, t, config, isSinhala } = useLanguage();
   const [closing, setClosing] = useState(false);
 
@@ -30,7 +33,9 @@ export const InvitationOpening: React.FC<InvitationOpeningProps> = ({ isOpen, on
       aria-hidden="false"
       data-lp-gate=""
       className={`fixed inset-0 z-[900] grid place-items-center overflow-hidden transition-opacity duration-700 ${
-        closing ? "opacity-0 pointer-events-none" : "opacity-100 pointer-events-auto"
+        closing
+          ? "opacity-0 pointer-events-none"
+          : "opacity-100 pointer-events-auto"
       }`}
       style={{
         backgroundColor: "#F5EEDF",
@@ -40,7 +45,10 @@ export const InvitationOpening: React.FC<InvitationOpeningProps> = ({ isOpen, on
       }}
     >
       {/* Background Mandala Mask */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden" style={{ opacity: 0.16 }}>
+      <div
+        className="pointer-events-none absolute inset-0 overflow-hidden"
+        style={{ opacity: 0.16 }}
+      >
         <div className="absolute top-1/2 right-0 h-[200vw] w-[200vw] -translate-y-1/2 translate-x-1/2 md:right-auto md:left-1/2 md:h-[min(150vw,900px)] md:w-[min(150vw,900px)] md:-translate-x-1/2">
           <div className="gpd-mandala" />
         </div>
@@ -69,20 +77,45 @@ export const InvitationOpening: React.FC<InvitationOpeningProps> = ({ isOpen, on
               color: "#8C6420",
             }}
           >
-            {isSinhala ? "සාදර ඇරයුමයි !" : "Cordially Invited !"}
+            {isSinhala ? "සාදර ඇරයුමයි !" : "Heartfelt Invitation!"}
           </span>
         </p>
 
         {/* Couple Names */}
-        <p className="mt-4" style={{ fontSize: "clamp(1.4rem, 5.5vw, 2.1rem)" }}>
-          <span style={{ color: "#B98A2F", fontWeight: 700, fontFamily: "var(--font-sinhala)" }}>
-            {isSinhala ? config.couple.groom.nameOnlySi : config.couple.groom.firstNameEn}
+        <p
+          className="mt-4"
+          style={{ fontSize: "clamp(1.4rem, 5.5vw, 2.1rem)" }}
+        >
+          <span
+            style={{
+              color: "#B98A2F",
+              fontWeight: 700,
+              fontFamily: "var(--font-sinhala)",
+            }}
+          >
+            {isSinhala
+              ? config.couple.bride.nameOnlySi
+              : config.couple.bride.firstNameEn}
           </span>
-          <span style={{ margin: "0 0.5rem", color: "#8C6420", fontFamily: "var(--font-sinhala)" }}>
+          <span
+            style={{
+              margin: "0 0.5rem",
+              color: "#8C6420",
+              fontFamily: "var(--font-sinhala)",
+            }}
+          >
             {isSinhala ? "සහ" : "and"}
           </span>
-          <span style={{ color: "#B98A2F", fontWeight: 700, fontFamily: "var(--font-sinhala)" }}>
-            {isSinhala ? config.couple.bride.nameOnlySi : config.couple.bride.firstNameEn}
+          <span
+            style={{
+              color: "#B98A2F",
+              fontWeight: 700,
+              fontFamily: "var(--font-sinhala)",
+            }}
+          >
+            {isSinhala
+              ? config.couple.groom.nameOnlySi
+              : config.couple.groom.firstNameEn}
           </span>
         </p>
 
@@ -121,7 +154,10 @@ export const InvitationOpening: React.FC<InvitationOpeningProps> = ({ isOpen, on
             aria-pressed={lang === "si"}
             className="rounded-full px-3.5 py-1 text-[0.82rem] font-bold transition-colors"
             style={{
-              background: lang === "si" ? "linear-gradient(135deg, #B98A2F, #8C6420)" : "transparent",
+              background:
+                lang === "si"
+                  ? "linear-gradient(135deg, #B98A2F, #8C6420)"
+                  : "transparent",
               color: lang === "si" ? "#FDF8EC" : "#8C6420",
             }}
           >
@@ -133,7 +169,10 @@ export const InvitationOpening: React.FC<InvitationOpeningProps> = ({ isOpen, on
             aria-pressed={lang === "en"}
             className="rounded-full px-3.5 py-1 text-[0.82rem] font-bold transition-colors"
             style={{
-              background: lang === "en" ? "linear-gradient(135deg, #B98A2F, #8C6420)" : "transparent",
+              background:
+                lang === "en"
+                  ? "linear-gradient(135deg, #B98A2F, #8C6420)"
+                  : "transparent",
               color: lang === "en" ? "#FDF8EC" : "#8C6420",
             }}
           >

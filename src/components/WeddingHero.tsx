@@ -44,7 +44,7 @@ export const WeddingHero: React.FC = () => {
               fontFamily: "var(--font-sinhala)",
             }}
           >
-            {isSinhala ? "සාදර ඇරයුමයි !" : "Cordially Invited !"}
+            {isSinhala ? "සාදර ඇරයුමයි !" : "Heartfelt Invitation!"}
           </h1>
         </div>
 
@@ -169,7 +169,7 @@ export const WeddingHero: React.FC = () => {
           }}
         >
           {isSinhala
-            ? "අතිනත ගන්නට ලක ලැස්තිය."
+            ? "අතිනත ගන්නට ලක ලෑස්තියි."
             : "Are joining their hands in sacred marriage."}
         </p>
 
@@ -251,7 +251,7 @@ export const WeddingHero: React.FC = () => {
             }}
           >
             {isSinhala
-              ? `සනුහරේ නෑදෑ හිත මිතුරන් අතරින්\nඔබේ සෙනහසේ උණුහුම එදින\nමංගල පෝරු මස්තකයේ හිඳ විදින්නට\nඔබට සෙනෙහසින් ඇරයුම් කරමු.`
+              ? `සනුහරේ නෑදෑ හිතමිතුරන්ගේ ආදරය හා ආශීර්වාදය මධ්‍යයේ,\nමංගල පෝරුව මස්තකයේදී අතිනත ගෙන,\nජීවිතයේ නව සුන්දර ගමනක් අරඹන ඒ සොඳුරු මොහොතේ,\nඔබේ සෙනෙහසේ උණුසුමත්, ආදරණීය ආශීර්වාදයත් සමඟින් අප හා එක්වන ලෙස,\nඔබට සෙනෙහසින් ඇරයුම් කරමු.`
               : `As we step onto the sacred Poruwa and pledge our vows,\nwe warmly invite you to join us\nand share in the joy and blessings of our union.`}
           </p>
         </div>

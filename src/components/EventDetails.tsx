@@ -10,10 +10,10 @@ export const EventDetails: React.FC = () => {
   const [downloaded, setDownloaded] = useState(false);
 
   const handleDownloadIcs = () => {
-    const startDate = "20270313T170000";
-    const endDate = "20270313T230000";
+    const startDate = "20270121T170000";
+    const endDate = "20270121T230000";
     const summary = `${config.couple.bride.firstNameEn} & ${config.couple.groom.firstNameEn}'s Wedding`;
-    const description = `Traditional Sri Lankan Wedding Celebration of ${config.couple.bride.fullNameEn} and ${config.couple.groom.fullNameEn}. Poruwa ceremony at 5:00 PM followed by dinner banquet.`;
+    const description = `Traditional Sri Lankan Wedding Celebration of ${config.couple.bride.fullNameEn} and ${config.couple.groom.fullNameEn}. Poruwa ceremony at ${config.event.time} followed by dinner banquet.`;
     const location = `${config.event.venue.nameEn}, ${config.event.venue.hallEn}, ${config.event.venue.addressEn}`;
 
     const icsContent = [
@@ -35,11 +35,16 @@ export const EventDetails: React.FC = () => {
       "END:VCALENDAR",
     ].join("\r\n");
 
-    const blob = new Blob([icsContent], { type: "text/calendar;charset=utf-8" });
+    const blob = new Blob([icsContent], {
+      type: "text/calendar;charset=utf-8",
+    });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
-    link.setAttribute("download", "nimesh-dilhani-wedding.ics");
+    link.setAttribute(
+      "download",
+      `${config.couple.bride.firstNameEn}-${config.couple.groom.firstNameEn}-wedding.ics`,
+    );
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -50,21 +55,30 @@ export const EventDetails: React.FC = () => {
   };
 
   const googleCalendarUrl = () => {
-    const title = encodeURIComponent(`${config.couple.bride.firstNameEn} & ${config.couple.groom.firstNameEn}'s Wedding`);
-    const details = encodeURIComponent(`Traditional Sri Lankan Wedding Celebration of ${config.couple.bride.fullNameEn} & ${config.couple.groom.fullNameEn}. Poruwa Ceremony: 5:00 PM.`);
-    const location = encodeURIComponent(`${config.event.venue.nameEn}, ${config.event.venue.hallEn}, ${config.event.venue.addressEn}`);
+    const title = encodeURIComponent(
+      `${config.couple.bride.firstNameEn} & ${config.couple.groom.firstNameEn}'s Wedding`,
+    );
+    const details = encodeURIComponent(
+      `Traditional Sri Lankan Wedding Celebration of ${config.couple.bride.fullNameEn} & ${config.couple.groom.fullNameEn}. Poruwa Ceremony: ${config.event.time}.`,
+    );
+    const location = encodeURIComponent(
+      `${config.event.venue.nameEn}, ${config.event.venue.hallEn}, ${config.event.venue.addressEn}`,
+    );
     return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=20270313T113000Z/20270313T173000Z&details=${details}&location=${location}`;
   };
 
   return (
-    <section id="events" className="mx-auto max-w-5xl px-6 py-9 sm:px-7 sm:py-12">
+    <section
+      id="events"
+      className="mx-auto max-w-5xl px-6 py-9 sm:px-7 sm:py-12"
+    >
       <div className="mb-10 text-center sm:mb-14">
-        <span
+        {/* <span
           className="mb-2 block text-[0.66rem] uppercase tracking-[0.34em]"
           style={{ fontFamily: "var(--font-montserrat)", color: "#B98A2F" }}
         >
           Event Details
-        </span>
+        </span> */}
 
         <h2
           className="leading-tight"
@@ -104,12 +118,17 @@ export const EventDetails: React.FC = () => {
           <span
             className="mb-1 grid h-16 w-16 place-items-center rounded-full transition-transform duration-300 group-hover:scale-110"
             style={{
-              background: "linear-gradient(150deg, #D8B45F, #B98A2F 55%, #8C6420)",
+              background:
+                "linear-gradient(150deg, #D8B45F, #B98A2F 55%, #8C6420)",
               color: "#FDF8EC",
               boxShadow: "0 10px 20px -10px rgba(120,86,30,0.7)",
             }}
           >
-            <span aria-hidden="true" className="h-7 w-7 gpd-arch" style={{ color: "#FDF8EC" }} />
+            <span
+              aria-hidden="true"
+              className="h-7 w-7 gpd-arch"
+              style={{ color: "#FDF8EC" }}
+            />
           </span>
 
           <h3
@@ -121,7 +140,9 @@ export const EventDetails: React.FC = () => {
               lineHeight: 1.3,
             }}
           >
-            {isSinhala ? "මංගල උත්සවය සහ පෝරුවේ චාරිත්‍රය" : "Wedding Ceremony & Poruwa Rituals"}
+            {isSinhala
+              ? "මංගල උත්සවය සහ පෝරුවේ චාරිත්‍රය"
+              : "Wedding Ceremony & Poruwa Rituals"}
           </h3>
 
           <div
@@ -131,10 +152,16 @@ export const EventDetails: React.FC = () => {
               fontSize: "clamp(0.98rem, 2.4vw, 1.08rem)",
             }}
           >
-            {isSinhala ? "කොළඹ හිල්ටන් හෝටලය - ග්‍රෑන්ඩ් බෝල්රූම්" : "Hilton Colombo - Grand Ballroom"}
+            {isSinhala
+              ? "සෝපාන මවුන්ට් වීව් හෝටල් පරිශ්‍රය"
+              : "Sopana Mount View Hotel Premises"}
           </div>
 
-          <span className="my-1.5 h-px w-10" style={{ background: "#D8B45F" }} aria-hidden="true" />
+          <span
+            className="my-1.5 h-px w-10"
+            style={{ background: "#D8B45F" }}
+            aria-hidden="true"
+          />
 
           <p
             className="text-[0.95rem] leading-[1.8]"
@@ -142,13 +169,13 @@ export const EventDetails: React.FC = () => {
           >
             {isSinhala ? (
               <>
-                පෝරුවේ චාරිත්‍රය: ප.ව. 5.00 ට
+                {config.event.ceremony.poruwaTimeSi}
                 <br />
                 ඉන් අනතුරුව මංගල භෝජන සංග්‍රහය
               </>
             ) : (
               <>
-                Poruwa Ceremony: 5:00 PM
+                {config.event.ceremony.poruwaTimeEn}
                 <br />
                 Followed by the Wedding Banquet
               </>
@@ -158,7 +185,7 @@ export const EventDetails: React.FC = () => {
       </div>
 
       {/* Save to Calendar Button */}
-      <div className="mx-auto mt-12 max-w-md">
+      {/* <div className="mx-auto mt-12 max-w-md">
         <div className="relative">
           <div
             className="rounded-2xl overflow-hidden"
@@ -175,7 +202,9 @@ export const EventDetails: React.FC = () => {
             >
               <span
                 className="flex-shrink-0 rounded-full flex items-center justify-center w-10 h-10"
-                style={{ background: "linear-gradient(135deg, #B98A2F, #8C6420)" }}
+                style={{
+                  background: "linear-gradient(135deg, #B98A2F, #8C6420)",
+                }}
               >
                 <CalendarDays className="w-5 h-5 text-[#FDF8EC]" />
               </span>
@@ -183,12 +212,21 @@ export const EventDetails: React.FC = () => {
               <span className="flex-1 min-w-0">
                 <span
                   className="block leading-tight text-lg"
-                  style={{ fontFamily: "var(--font-sinhala)", color: "#8C6420", fontWeight: 700 }}
+                  style={{
+                    fontFamily: "var(--font-sinhala)",
+                    color: "#8C6420",
+                    fontWeight: 700,
+                  }}
                 >
                   {isSinhala ? "දිනය සුරකින්න" : "Save the Date"}
                 </span>
-                <span className="block text-xs mt-0.5" style={{ color: "rgba(90, 74, 51, 0.65)" }}>
-                  {isSinhala ? "ඔබගේ දින දර්ශනයට එක් කරන්න" : "Add to your calendar"}
+                <span
+                  className="block text-xs mt-0.5"
+                  style={{ color: "rgba(90, 74, 51, 0.65)" }}
+                >
+                  {isSinhala
+                    ? "ඔබගේ දින දර්ශනයට එක් කරන්න"
+                    : "Add to your calendar"}
                 </span>
               </span>
 
@@ -233,13 +271,25 @@ export const EventDetails: React.FC = () => {
                 className="w-full flex items-center gap-2.5 px-4 py-2.5 rounded-xl hover:bg-black/5 text-sm font-semibold transition-colors"
                 style={{ fontFamily: "var(--font-sinhala)", color: "#8C6420" }}
               >
-                {downloaded ? <Check className="w-4 h-4" /> : <CalendarDays className="w-4 h-4" />}
-                <span>{downloaded ? (isSinhala ? "බාගන්නා ලදී!" : "Downloaded!") : (isSinhala ? "Apple / Outlook (.ics බාගන්න)" : "Apple / Outlook (Download .ics)")}</span>
+                {downloaded ? (
+                  <Check className="w-4 h-4" />
+                ) : (
+                  <CalendarDays className="w-4 h-4" />
+                )}
+                <span>
+                  {downloaded
+                    ? isSinhala
+                      ? "බාගන්නා ලදී!"
+                      : "Downloaded!"
+                    : isSinhala
+                      ? "Apple / Outlook (.ics බාගන්න)"
+                      : "Apple / Outlook (Download .ics)"}
+                </span>
               </button>
             </div>
           )}
         </div>
-      </div>
+      </div> */}
     </section>
   );
 };
