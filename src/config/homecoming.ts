@@ -15,6 +15,8 @@ export const homecomingConfig: WeddingConfig = {
     monthEn: "March",
     monthSi: "මාර්තු",
     day: "13",
+    month: "01",
+    time: "05:00 PM",
     dayOfWeekEn: "Saturday",
     dayOfWeekSi: "සෙනසුරාදා",
     timeEn: "5:00 PM",
