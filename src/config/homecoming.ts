@@ -1,61 +1,57 @@
 import { weddingConfig, type WeddingConfig } from "./wedding";
 
-/**
- * Edit only this file when Homecoming date, venue, and wording are confirmed.
- * Empty event date / map URLs intentionally hide calendar, countdown, and map links.
- * The wedding config and its existing invitation links are not modified.
+/** Homecoming-specific content. Shared couple identity lives in wedding.ts.
+ * Edit the event, RSVP, gallery and music here without changing the wedding design.
  */
 export const homecomingConfig: WeddingConfig = {
   ...weddingConfig,
 
   event: {
-    weddingDate: "2027-03-13T17:00:00+05:30",
+    weddingDate: "2027-01-23T10:00:00+05:30",
     timeZone: "Asia/Colombo",
     year: "2027",
-    monthEn: "March",
-    monthSi: "මාර්තු",
-    day: "13",
+    monthEn: "January",
+    monthSi: "ජනවාරි",
+    day: "23",
     month: "01",
-    time: "05:00 PM",
+    time: "10:00 AM",
     dayOfWeekEn: "Saturday",
     dayOfWeekSi: "සෙනසුරාදා",
-    timeEn: "5:00 PM",
-    timeSi: "ප.ව. 5.00",
+    timeEn: "10:00 AM",
+    timeSi: "පෙ.ව. 10.00",
     traditionalAuspiciousTextSi:
-      "දෙදහස් විසිහතක් වු මැදින් මස දහතුන් වන සෙනසුරාදා\nඅපරභාග 5.00ට යෙදෙන සුභමොහොතින්\nකොළඹ හිල්ටන් හෝටලයේ\nග්‍රෑන්ඩ් බෝල්රූම් හීදී",
+      "දෙදහස් විසිහතක් වු දුරුතු මස විසි තුන්වන සෙනසුරාදා\nපෙරවරු 10.00ට\nබණ්ඩාරවෙල තේ ට්‍රී රිසෝට් පරිශ්‍රයේදී",
     traditionalAuspiciousTextEn:
-      "On Saturday, the 13th of March Two Thousand Twenty Seven\nat 5:00 in the evening\nat The Grand Ballroom, Hilton Colombo",
+      "On Saturday, the 23rd of January Two Thousand Twenty Seven\nat 10:00 in the morning\nat The Tea Tree Resort, Bandarawela",
     ceremony: {
-      titleEn: "Wedding Ceremony & Poruwa Rituals",
-      titleSi: "මංගල උත්සවය සහ පෝරුවේ චාරිත්‍රය",
-      poruwaTimeEn: "Poruwa Ceremony: 5:00 PM",
-      poruwaTimeSi: "පෝරුවේ චාරිත්‍රය: ප.ව. 5.00 ට",
-      receptionTimeEn: "Followed by the Wedding Banquet",
-      receptionTimeSi: "ඉන් අනතුරුව මංගල භෝජන සංග්‍රහය",
+      titleEn: "Homecoming Celebration",
+      titleSi: "නිවසට කැන්දන් ඒමේ උත්සවය",
+      poruwaTimeEn: "Homecoming Celebration: 10:00 AM",
+      poruwaTimeSi: "නිවසට කැන්දන් ඒමේ උත්සවය: පෙ.ව. 10.00",
+      receptionTimeEn: "Followed by the Homecoming Reception",
+      receptionTimeSi: "ඉන් අනතුරුව භෝජන සංග්‍රහය",
       dressCodeEn: "Traditional / Formal Attire",
-      dressCodeSi: "සාම්ප්‍රදායික හෝ විධිමත් මංගල ඇඳුමින්",
+      dressCodeSi: "සාම්ප්‍රදායික හෝ විධිමත් ඇඳුමින්",
     },
     venue: {
-      nameEn: "Hilton Colombo (Grand Ballroom)",
-      nameSi: "කොළඹ හිල්ටන් හෝටලය (ග්‍රෑන්ඩ් බෝල්රූම්)",
-      hallEn: "Grand Ballroom",
-      hallSi: "ග්‍රෑන්ඩ් බෝල්රූම්",
-      addressEn: "No. 2, Sir Chittampalam A Gardiner Mawatha, Colombo 02",
-      addressSi: "අංක 2, සර් චිත්තම්පලම් ඒ ගාඩිනර් මාවත, කොළඹ 2.",
-      googleMapsUrl:
-        "https://www.google.com/maps/search/?api=1&query=Hilton%20Colombo%2C%202%20Sir%20Chittampalam%20A%20Gardiner%20Mawatha%2C%20Colombo%2000200",
-      embedMapUrl:
-        "https://maps.google.com/maps?q=Hilton%20Colombo%2C%202%20Sir%20Chittampalam%20A%20Gardiner%20Mawatha%2C%20Colombo%2000200&z=14&hl=en&output=embed",
+      nameEn: "The Tea Tree Resort",
+      nameSi: "ද ටී ට්‍රී රිසෝට්",
+      hallEn: "The Tea Tree Resort",
+      hallSi: "ද ටී ට්‍රී රිසෝට්",
+      addressEn: "Kithal Ella Road, Heeloya, Bandarawela",
+      addressSi: "කිතල් ඇල්ල පාර, හීල්ඔය, බණ්ඩාරවෙල",
+      googleMapsUrl: "https://maps.app.goo.gl/MEYGPovFdeKAawVe8",
+      embedMapUrl: "https://maps.google.com/maps?q=The%20Tea%20Tree%20Resort%2C%20Kithal%20Ella%20Road%2C%20Heeloya%2C%20Bandarawela&z=15&output=embed",
       image: "/golden-poruwa-demo/homecoming-hotel.png",
     },
   },
   rsvp: {
-    deadlineDateEn: "February 20, 2027",
-    deadlineDateSi: "2027 පෙබරවාරි 20",
-    deadlineIso: "2027-02-20",
+    deadlineDateEn: "January 22, 2027",
+    deadlineDateSi: "2027 ජනවාරි 22",
+    deadlineIso: "2027-01-22",
     maxGuestsPerInvite: 6,
-    phoneGroom: "0713456789",
-    phoneBride: "0772345678",
+    phoneGroom: weddingConfig.couple.groom.phone,
+    phoneBride: weddingConfig.couple.bride.phone,
   },
   gallery: [
     {

@@ -10,8 +10,10 @@ export const EventDetails: React.FC = () => {
   const [downloaded, setDownloaded] = useState(false);
 
   const handleDownloadIcs = () => {
-    const startDate = "20270121T170000";
-    const endDate = "20270121T230000";
+    const dt = new Date(config.event.weddingDate);
+    const fmt = (date: Date) => date.toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
+    const startDate = fmt(dt);
+    const endDate = fmt(new Date(dt.getTime() + 5 * 60 * 60 * 1000));
     const summary = `${config.couple.bride.firstNameEn} & ${config.couple.groom.firstNameEn}'s Wedding`;
     const description = `Traditional Sri Lankan Wedding Celebration of ${config.couple.bride.fullNameEn} and ${config.couple.groom.fullNameEn}. Poruwa ceremony at ${config.event.time} followed by dinner banquet.`;
     const location = `${config.event.venue.nameEn}, ${config.event.venue.hallEn}, ${config.event.venue.addressEn}`;
@@ -23,10 +25,10 @@ export const EventDetails: React.FC = () => {
       "CALSCALE:GREGORIAN",
       "METHOD:PUBLISH",
       "BEGIN:VEVENT",
-      `UID:wedding-${Date.now()}@invitation.lk`,
+      `UID:wedding-${Date.now()}@private-invitation`,
       `DTSTAMP:${new Date().toISOString().replace(/[-:]/g, "").split(".")[0]}Z`,
-      `DTSTART;TZID=Asia/Colombo:${startDate}`,
-      `DTEND;TZID=Asia/Colombo:${endDate}`,
+      `DTSTART:${startDate}`,
+      `DTEND:${endDate}`,
       `SUMMARY:${summary}`,
       `DESCRIPTION:${description}`,
       `LOCATION:${location}`,
@@ -64,7 +66,10 @@ export const EventDetails: React.FC = () => {
     const location = encodeURIComponent(
       `${config.event.venue.nameEn}, ${config.event.venue.hallEn}, ${config.event.venue.addressEn}`,
     );
-    return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=20270313T113000Z/20270313T173000Z&details=${details}&location=${location}`;
+    const dt = new Date(config.event.weddingDate);
+    const fmt = (date: Date) => date.toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
+    const dates = `${fmt(dt)}/${fmt(new Date(dt.getTime() + 5 * 60 * 60 * 1000))}`;
+    return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}&location=${location}`;
   };
 
   return (
@@ -141,8 +146,8 @@ export const EventDetails: React.FC = () => {
             }}
           >
             {isSinhala
-              ? "මංගල උත්සවය සහ පෝරුවේ චාරිත්‍රය"
-              : "Wedding Ceremony & Poruwa Rituals"}
+              ? config.event.ceremony.titleSi
+              : config.event.ceremony.titleEn}
           </h3>
 
           <div
@@ -153,8 +158,8 @@ export const EventDetails: React.FC = () => {
             }}
           >
             {isSinhala
-              ? "සෝපාන මවුන්ට් වීව් හෝටල් පරිශ්‍රය"
-              : "Sopana Mount View Hotel Premises"}
+              ? config.event.venue.nameSi
+              : config.event.venue.nameEn}
           </div>
 
           <span
@@ -171,13 +176,13 @@ export const EventDetails: React.FC = () => {
               <>
                 {config.event.ceremony.poruwaTimeSi}
                 <br />
-                ඉන් අනතුරුව මංගල භෝජන සංග්‍රහය
+                {config.event.ceremony.receptionTimeSi}
               </>
             ) : (
               <>
                 {config.event.ceremony.poruwaTimeEn}
                 <br />
-                Followed by the Wedding Banquet
+                {config.event.ceremony.receptionTimeEn}
               </>
             )}
           </p>
