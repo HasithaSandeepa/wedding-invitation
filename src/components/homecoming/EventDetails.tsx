@@ -16,7 +16,7 @@ export const EventDetails: React.FC = () => {
     const startDate = fmt(dt);
     const endDate = fmt(new Date(dt.getTime() + 5 * 60 * 60 * 1000));
     const summary = `${config.couple.bride.firstNameEn} & ${config.couple.groom.firstNameEn}'s Homecoming`;
-    const description = `Homecoming Celebration of ${config.couple.bride.fullNameEn} and ${config.couple.groom.fullNameEn}. Homecoming celebration.`;
+    const description = `Homecoming Celebration of ${config.couple.bride.fullNameEn} and ${config.couple.groom.fullNameEn}.`;
     const location = `${config.event.venue.nameEn}, ${config.event.venue.hallEn}, ${config.event.venue.addressEn}`;
 
     const icsContent = [
@@ -26,7 +26,7 @@ export const EventDetails: React.FC = () => {
       "CALSCALE:GREGORIAN",
       "METHOD:PUBLISH",
       "BEGIN:VEVENT",
-      `UID:homecoming-${Date.now()}@invitation.lk`,
+      `UID:homecoming-${Date.now()}@private-invitation`,
       `DTSTAMP:${new Date().toISOString().replace(/[-:]/g, "").split(".")[0]}Z`,
       `DTSTART:${startDate}`,
       `DTEND:${endDate}`,
@@ -42,7 +42,7 @@ export const EventDetails: React.FC = () => {
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
-    link.setAttribute("download", "nimesh-dilhani-homecoming.ics");
+    link.setAttribute("download", `${config.couple.bride.firstNameEn}-${config.couple.groom.firstNameEn}-homecoming.ics`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);

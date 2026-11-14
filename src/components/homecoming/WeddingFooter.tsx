@@ -45,7 +45,7 @@ export const WeddingFooter: React.FC = () => {
                 letterSpacing: "0.04em",
               }}
             >
-              {config.event.day} . 03 . {config.event.year}
+              {config.event.day} . {config.event.month} . {config.event.year}
             </div>
 
             <div

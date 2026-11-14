@@ -135,7 +135,7 @@ export const RSVPForm: React.FC<{
             Please open your personalized invitation link to respond.
           </div>
         ) : loading ? (
-          <div className="p-8 text-center">Loading your family invitation…</div>
+          <div className="p-8 text-center">Loading your invitation…</div>
         ) : loadError ? (
           <div className="p-8 text-center text-red-800" role="alert">
             {loadError}
@@ -183,9 +183,8 @@ export const RSVPForm: React.FC<{
               <p
                 className="mt-1 text-sm font-semibold text-[#8C6420]"
                 style={{ fontFamily: "var(--font-sinhala)" }}
-              ></p>
-              <p className="font-semibold text-[#8C6420]">
-                {maxAttendees === 1 ? name : `${name} &amp; Family`}
+              >
+                {maxAttendees === 1 ? name : `${name} & Family`}
               </p>
               <p className="text-xs text-[#8A7A60]">
                 Up to {maxAttendees} attendee{maxAttendees !== 1 ? "s" : ""}

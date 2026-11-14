@@ -4,8 +4,11 @@ import React, { useEffect, useState } from "react";
 import { Send, CheckCircle2 } from "lucide-react";
 import { useLanguage } from "../LanguageContext";
 
-export const RSVPForm: React.FC<{ invitationToken?: string; eventId?: "wedding" | "homecoming" }> = ({ invitationToken, eventId = "homecoming" }) => {
-  const { isSinhala } = useLanguage();
+export const RSVPForm: React.FC<{
+  invitationToken?: string;
+  eventId?: "wedding" | "homecoming";
+}> = ({ invitationToken, eventId = "homecoming" }) => {
+  const { isSinhala, config } = useLanguage();
   const [name, setName] = useState("");
   const [maxAttendees, setMaxAttendees] = useState(1);
   const [loading, setLoading] = useState(!!invitationToken);
@@ -13,10 +16,21 @@ export const RSVPForm: React.FC<{ invitationToken?: string; eventId?: "wedding" 
   const [error, setError] = useState("");
   useEffect(() => {
     if (!invitationToken) return;
-    fetch(`/api/invite/${eventId}/${encodeURIComponent(invitationToken)}`, { cache: 'no-store' })
-      .then(async (r) => { if (!r.ok) throw Error('This invitation link is invalid or unavailable.'); return r.json(); })
-      .then((data) => { setName(data.name); setMaxAttendees(data.maxAttendees); setGuests(data.attendingCount || 1); setAttending(data.status !== 'declined'); })
-      .catch((e) => setLoadError(e.message || 'Could not load invitation'))
+    fetch(`/api/invite/${eventId}/${encodeURIComponent(invitationToken)}`, {
+      cache: "no-store",
+    })
+      .then(async (r) => {
+        if (!r.ok)
+          throw Error("This invitation link is invalid or unavailable.");
+        return r.json();
+      })
+      .then((data) => {
+        setName(data.name);
+        setMaxAttendees(data.maxAttendees);
+        setGuests(data.attendingCount || 1);
+        setAttending(data.status !== "declined");
+      })
+      .catch((e) => setLoadError(e.message || "Could not load invitation"))
       .finally(() => setLoading(false));
   }, [invitationToken, eventId]);
   const [attending, setAttending] = useState<boolean | null>(true);
@@ -31,19 +45,22 @@ export const RSVPForm: React.FC<{ invitationToken?: string; eventId?: "wedding" 
 
     setIsSubmitting(true);
     try {
-      const res = await fetch(`/api/invite/${eventId}/${encodeURIComponent(invitationToken)}`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          status: attending ? "confirmed" : "declined",
-          attendingCount: attending ? guests : 0,
-        }),
-      });
+      const res = await fetch(
+        `/api/invite/${eventId}/${encodeURIComponent(invitationToken)}`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            status: attending ? "confirmed" : "declined",
+            attendingCount: attending ? guests : 0,
+          }),
+        },
+      );
       const body = await res.json();
-      if (!res.ok) throw new Error(body.error || 'Unable to save RSVP');
+      if (!res.ok) throw new Error(body.error || "Unable to save RSVP");
       setSubmitted(true);
     } catch (e) {
-      setError(e instanceof Error ? e.message : 'Unable to save RSVP');
+      setError(e instanceof Error ? e.message : "Unable to save RSVP");
     } finally {
       setIsSubmitting(false);
     }
@@ -90,25 +107,39 @@ export const RSVPForm: React.FC<{ invitationToken?: string; eventId?: "wedding" 
           style={{ fontFamily: "var(--font-sinhala)", color: "#906872" }}
         >
           {isSinhala
-            ? "අනිවාර්යයෙන්ම 5ට එන්න. එන නොඑන වග කියන්න."
-            : eventId === "homecoming" ? "Please let us know whether you will join us for the homecoming celebration." : "Please let us know whether you will be joining us by 5:00 PM."}
+            ? "ඔබගේ පැමිණීම කාරුණිකව තහවුරු කරන්න."
+            : eventId === "homecoming"
+              ? "Please let us know whether you will join us for the homecoming celebration."
+              : "Please confirm your attendance."}
         </p>
 
         <p
           className="mb-9 text-[0.95rem]"
-          style={{ fontFamily: "var(--font-sinhala)", fontWeight: 600, color: "#82273A" }}
+          style={{
+            fontFamily: "var(--font-sinhala)",
+            fontWeight: 600,
+            color: "#82273A",
+          }}
         >
           {isSinhala
-            ? eventId === "homecoming" ? "කරුණාකර ඔබගේ පැමිණීම තහවුරු කරන්න" : "ඔබගේ පැමිණීම 2027 පෙබරවාරි 20 දිනට පෙර කරුණාකර දන්වන්න"
-            : eventId === "homecoming" ? "Please confirm your attendance." : "Please respond before February 20, 2027"}
+            ? eventId === "homecoming"
+              ? "කරුණාකර ඔබගේ පැමිණීම තහවුරු කරන්න"
+              : `කරුණාකර ${config.rsvp.deadlineDateSi} දිනට පෙර පිළිතුරු දෙන්න`
+            : eventId === "homecoming"
+              ? "Please confirm your attendance."
+              : `Please respond by ${config.rsvp.deadlineDateEn}`}
         </p>
 
         {!invitationToken ? (
-          <div className="rounded-xl border border-[#B94658]/40 p-8 text-center text-[#82273A] bg-[#FFF5F4]">Please open your personalized invitation link to respond.</div>
+          <div className="rounded-xl border border-[#B94658]/40 p-8 text-center text-[#82273A] bg-[#FFF5F4]">
+            Please open your personalized invitation link to respond.
+          </div>
         ) : loading ? (
-          <div className="p-8 text-center">Loading your family invitation…</div>
+          <div className="p-8 text-center">Loading your invitation…</div>
         ) : loadError ? (
-          <div className="p-8 text-center text-red-800" role="alert">{loadError}</div>
+          <div className="p-8 text-center text-red-800" role="alert">
+            {loadError}
+          </div>
         ) : submitted ? (
           <div
             className="rounded-[120px_120px_22px_22px] px-6 py-16 text-center sm:px-12"
@@ -145,9 +176,15 @@ export const RSVPForm: React.FC<{ invitationToken?: string; eventId?: "wedding" 
             }}
           >
             <div className="mb-5 rounded-lg border border-[#B94658]/40 bg-[#F9EDEE]/50 px-4 py-3 text-center">
-              <p className="text-xs uppercase tracking-wide text-[#906872]">Family Invitation</p>
-              <p className="font-semibold text-[#82273A]">{name} &amp; Family</p>
-              <p className="text-xs text-[#906872]">Up to {maxAttendees} attendee{maxAttendees !== 1 ? 's' : ''}</p>
+              <p className="text-xs uppercase tracking-wide text-[#906872]">
+                Family Invitation
+              </p>
+              <p className="font-semibold text-[#82273A]">
+                {maxAttendees === 1 ? name : `${name} & Family`}
+              </p>
+              <p className="text-xs text-[#906872]">
+                Up to {maxAttendees} attendee{maxAttendees !== 1 ? "s" : ""}
+              </p>
             </div>
 
             {/* Attendance Toggle */}
@@ -170,7 +207,10 @@ export const RSVPForm: React.FC<{ invitationToken?: string; eventId?: "wedding" 
                   style={{
                     borderRadius: "10px",
                     border: "1px solid rgba(185, 70, 88, 0.45)",
-                    background: attending === true ? "linear-gradient(135deg, #B94658, #82273A)" : "transparent",
+                    background:
+                      attending === true
+                        ? "linear-gradient(135deg, #B94658, #82273A)"
+                        : "transparent",
                     color: attending === true ? "#FFF7F2" : "#906872",
                     fontFamily: "var(--font-sinhala)",
                     fontWeight: 600,
@@ -237,7 +277,9 @@ export const RSVPForm: React.FC<{ invitationToken?: string; eventId?: "wedding" 
                   </span>
                   <button
                     type="button"
-                    onClick={() => setGuests((g) => Math.min(maxAttendees, g + 1))}
+                    onClick={() =>
+                      setGuests((g) => Math.min(maxAttendees, g + 1))
+                    }
                     className="grid h-11 w-11 place-items-center rounded-full text-xl transition-all hover:opacity-80 active:scale-90"
                     style={{
                       background: "rgba(185, 70, 88, 0.12)",
@@ -252,7 +294,11 @@ export const RSVPForm: React.FC<{ invitationToken?: string; eventId?: "wedding" 
               </div>
             )}
 
-            {error && <p role="alert" className="mb-4 text-center text-sm text-red-800">{error}</p>}
+            {error && (
+              <p role="alert" className="mb-4 text-center text-sm text-red-800">
+                {error}
+              </p>
+            )}
             {/* Submit */}
             <button
               type="submit"
@@ -267,7 +313,15 @@ export const RSVPForm: React.FC<{ invitationToken?: string; eventId?: "wedding" 
               }}
             >
               <Send className="h-4 w-4" />
-              <span>{isSubmitting ? (isSinhala ? "යවමින් පවතී..." : "Sending...") : (isSinhala ? "පිළිතුර යවන්න" : "Send Response")}</span>
+              <span>
+                {isSubmitting
+                  ? isSinhala
+                    ? "යවමින් පවතී..."
+                    : "Sending..."
+                  : isSinhala
+                    ? "පිළිතුර යවන්න"
+                    : "Send Response"}
+              </span>
             </button>
           </form>
         )}

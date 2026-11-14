@@ -1,134 +1,55 @@
-# Firebase + Vercel family invitation version
+# Wedding & Homecoming Digital Invitations
 
-**Start with [FIREBASE_VERCEL_SETUP.md](FIREBASE_VERCEL_SETUP.md).** The original wedding design is preserved; a new admin console is at `/admin`, and guests use `/invite/<token>`. The old file-based `/api/rsvp` was removed.
+A Next.js 14 application providing **two individually styled invitations** (wedding in gold and homecoming in red), Firebase-backed family invitations and RSVPs, and one administrator dashboard. Original UI, images, and music are retained.
 
----
+## Edit event details — the only two event content files
 
-# 🌸 Premium Traditional Sri Lankan Wedding Invitation Website
+| Event | Source | Public personalized URL |
+| --- | --- | --- |
+| Wedding | `src/config/wedding.ts` | `/invite/wedding/[token]` |
+| Homecoming | `src/config/homecoming.ts` | `/invite/homecoming/[token]` |
 
-A luxury digital wedding invitation web application inspired by authentic Kandyan and traditional Sri Lankan wedding aesthetics (Golden Poruwa, sacred lotus mandalas, liyawel motifs, and auspicious ceremonies).
+`wedding.ts` is the central source for the couple's names, parents and phone numbers. `homecoming.ts` inherits that shared identity and specifies **its own** ceremony/date/time, venue, map, RSVP details, images and music. To change the same couple for both events, edit `wedding.ts` once. Change the event-specific date, venue, wording, RSVP deadline, gallery or music in the corresponding event config. Both invitation designs remain separate in `src/components/` (gold wedding) and `src/components/homecoming/` (red homecoming); adjust those components and the scoped `.homecoming-theme` styles in `src/app/globals.css` to customize appearance independently.
 
-Built with **Next.js 14 (App Router)**, **TypeScript**, and **Tailwind CSS**.
+Event details supplied:
 
----
+- **Wedding:** 21 January 2027, Thursday, 8:30 AM (Poruwa 8:30 AM), Sopana Mount View Hotel Premises, Nuwara Eliya Road, Padinawela.
+- **Homecoming:** 23 January 2027, Saturday, 10:00 AM, The Tea Tree Resort, Kithal Ella Road, Heeloya, Bandarawela.
 
-## ✨ Features
+RSVP deadlines were not supplied; default values are defined in the two config files and may be changed there. No calendar finish time was supplied; the calendar export currently assumes a five-hour event duration.
 
-- **Traditional Sri Lankan Aesthetics**:
-  - Warm ivory and parchment paper backgrounds with delicate gold dust floating particles.
-  - Ornate Golden Poruwa illustration and crowning lotus mandalas.
-  - Traditional Liyawel corner ornaments and filigree dividers.
-  - Kandyan wedding inspired framing.
-- **Bilingual Support (සිංහල & English)**:
-  - Instant one-click toggle between authentic Sinhala wedding invitation phrasing and English.
-  - Persistent language selection.
-- **Opening Invitation Experience**:
-  - Card-envelope opening screen with couple's names, Poruwa crest, and smooth reveal animation.
-- **Hero & Couple Section**:
-  - Auspicious wedding date and time presentation.
-  - Traditional parents' introduction for bride and groom.
-  - Couple portrait inside an arched golden Poruwa frame.
-  - Heartfelt traditional blessing poem.
-- **Accurate Real-Time Countdown**:
-  - Live countdown timer calculated against the configured wedding date in Sri Lanka Standard Time (`Asia/Colombo`).
-  - Days, hours, minutes, and seconds with bilingual labels.
-- **Wedding Event Details & Add to Calendar**:
-  - Poruwa ceremony & banquet timings, venue, and dress code.
-  - Direct downloadable `.ics` calendar file generation.
-  - One-click Google Calendar integration link.
-- **Photo Gallery with Lightbox**:
-  - Responsive arched photo grid with zoom hover effects.
-  - Fullscreen lightbox with previous/next navigation and keyboard controls (`Esc`, `ArrowLeft`, `ArrowRight`).
-- **Venue & Interactive Location**:
-  - Venue address and information for Hilton Colombo Grand Ballroom.
-  - Embedded Google Map preview.
-  - Direct "View on Google Maps" navigation button.
-- **Complete RSVP Attendance System**:
-  - Name, attendance status, guest counter (+ / -), phone number, and wishes/dietary notes.
-  - Server-side API endpoint (`/api/rsvp`) with real storage in `data/rsvps.json`.
-  - Optional Google Sheets webhook integration via environment variable.
-- **Ambient Traditional Audio Player**:
-  - Built-in Web Audio API synthesizer generating meditative traditional sitar/veena pentatonic chimes (no broken remote mp3 dependencies!).
-  - Floating mute/unmute control with golden glow.
-- **Floating Bottom Navigation**:
-  - Glassmorphism pill navigation for quick jumps across sections (Home, Events, Gallery, Venue, RSVP).
+## Install & run
 
----
+1. Install Node.js 20 or later.
+2. Run `npm ci`.
+3. Fill in the `.env` file with **your own** Firebase project credentials and authorized administrator UIDs. Never publish this file; it is excluded by `.gitignore`.
+4. Run `npm run dev`, then visit `http://localhost:3000`.
+5. For production, set the same environment variables in your Vercel project dashboard; deploy normally with `npm run build`.
 
-## 🛠️ Project Structure
+### Environment variables
 
-```
-traditional invitation/
-├── data/
-│   └── rsvps.json             # Server-persisted RSVP guest responses
-├── src/
-│   ├── app/
-│   │   ├── api/
-│   │   │   └── rsvp/
-│   │   │       └── route.ts   # Server-side RSVP API endpoint
-│   │   ├── globals.css        # Styles, Sinhala & serif fonts, animations
-│   │   ├── layout.tsx         # Root layout with metadata and Open Graph
-│   │   └── page.tsx           # Main page orchestrating all components
-│   ├── components/
-│   │   ├── traditional/
-│   │   │   ├── PoruwaIllustration.tsx  # Golden Poruwa vector artwork
-│   │   │   ├── MandalaOrnament.tsx     # Lotus mandala vector motif
-│   │   │   ├── LotusFlourish.tsx       # Liyawel dividers & corner ornaments
-│   │   │   └── DustParticles.tsx       # Ambient gold dust specks
-│   │   ├── AudioPlayer.tsx        # Ambient traditional music player
-│   │   ├── EventDetails.tsx       # Ceremonies & .ics calendar generator
-│   │   ├── FloatingNav.tsx        # Glassmorphism bottom navigation
-│   │   ├── InvitationOpening.tsx  # Interactive invitation opening card
-│   │   ├── LanguageContext.tsx    # Bilingual state management
-│   │   ├── LanguageSwitcher.tsx   # Sinhala / English switcher
-│   │   ├── PhotoGallery.tsx       # Arched image gallery & lightbox
-│   │   ├── RSVPForm.tsx           # RSVP attendance form
-│   │   ├── VenueSection.tsx       # Venue card & embedded map
-│   │   ├── WeddingCountdown.tsx   # Real-time countdown timer
-│   │   └── WeddingFooter.tsx      # Final luxury card footer & call links
-│   ├── config/
-│   │   └── wedding.ts         # Centralized wedding information configuration
-│   └── translations/
-│       └── index.ts           # Sinhala & English dictionaries
-├── tailwind.config.ts         # Gold & ivory color palettes, keyframes
-├── tsconfig.json              # TypeScript configuration
-└── package.json
-```
+`NEXT_PUBLIC_FIREBASE_API_KEY`, `NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN`, `NEXT_PUBLIC_FIREBASE_PROJECT_ID`, `NEXT_PUBLIC_FIREBASE_APP_ID`, `NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET`, `NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID`: Firebase client web configuration (check `src/lib/firebase-client.ts`).
 
----
+`FIREBASE_PROJECT_ID`, `FIREBASE_CLIENT_EMAIL`, `FIREBASE_PRIVATE_KEY`: Firebase Admin service-account details (check `src/lib/firebase-admin.ts`). `FIREBASE_ADMIN_UIDS`: comma-separated Firebase Authentication UIDs allowed to manage guests. `NEXT_PUBLIC_APP_URL`: full deployed URL used when copying invitation links.
 
-## 🚀 Running the Project
+Only the `NEXT_PUBLIC_` variables are embedded into the browser build. Never expose Admin service account keys as `NEXT_PUBLIC_` variables.
 
-### 1. Development Mode
-```bash
-npm run dev
-# The website runs at http://localhost:3001
-```
+## Administrator dashboard `/admin`
 
-### 2. Production Build & Start
-```bash
-npm run build
-npm run start
-```
+Log in with a Firebase Authentication email/password account whose UID is listed in `FIREBASE_ADMIN_UIDS`. Add, edit, delete and import families (CSV/Excel); choose wedding, homecoming or both; preview and copy individual invitation links and WhatsApp messages; mark sent; export CSV; and review RSVP/attendance counts for each event. Sending is **manual**; copying is not the same as sending.
 
----
+Firestore collection: `invitations`. Each event uses a separate invitation document/token and RSVP while sharing a `familyId` for the same family. **Do not clear or migrate this collection**: the original `/invite/[token]` and `/api/invite/[token]` wedding links are preserved, and old documents without `eventId` are interpreted as wedding. Guest pages access only minimal RSVP data through server routes. Admin API calls require a verified Firebase ID token and UID authorization.
 
-## ⚙️ Customizing Wedding Details
+## Directory overview
 
-All couple names, dates, parents, ceremony times, venue details, and gallery photos can be edited in a single file:
+- `src/config/`: event data; edit content here
+- `src/components/` and `src/components/homecoming/`: visually distinct designs
+- `src/app/invite/`: old and new invitation routes
+- `src/app/api/`: guest RSVP and secured admin endpoints
+- `src/lib/`: Firebase clients, guest utilities, message and RSVP handling
+- `public/`: original invitation assets
+- `.env`: local credentials, ignored by Git; replace placeholder values
 
-📄 **`src/config/wedding.ts`**
+## Notes
 
-Updating this file automatically updates all relevant sections and calendar invitations across both Sinhala and English languages.
-
----
-
-## 📝 Connecting Google Sheets to RSVP (Optional)
-
-To automatically forward RSVP submissions to a Google Sheet:
-1. Create a Google Apps Script Webhook on your Google Sheet.
-2. Add your webhook URL to `.env.local`:
-```env
-GOOGLE_SHEETS_WEBHOOK_URL="https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec"
-```
-3. Whenever guests submit their RSVP, it is both securely saved locally in `data/rsvps.json` and forwarded to your Google Sheet.
+The included `.env` has **placeholders only** because the archive did not contain local credentials. The application requires a configured Firebase project to use admin login, saved invitations and RSVP. Run `npm run build` before deploying and verify both languages, both personalized invitation URLs and your Firebase permissions against your project.

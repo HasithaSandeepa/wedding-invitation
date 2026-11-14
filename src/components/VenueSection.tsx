@@ -123,7 +123,7 @@ export const VenueSection: React.FC = () => {
               }}
             >
               <iframe
-                title="Map of Colombo Hilton"
+                title={`Map of ${config.event.venue.nameEn}`}
                 src={config.event.venue.embedMapUrl}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
