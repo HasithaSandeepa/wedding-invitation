@@ -38,17 +38,34 @@ export const WeddingCountdown: React.FC = () => {
     return () => clearInterval(interval);
   }, [config.event.weddingDate]);
 
-  if (!config.event.weddingDate) return <section id="countdown" className="px-6 py-10 text-center"><h2 className="font-serif text-2xl" style={{color: "#82273A"}}>Homecoming Celebration</h2><p className="mt-3">Date and time to be confirmed</p></section>;
+  if (!config.event.weddingDate)
+    return (
+      <section id="countdown" className="px-6 py-10 text-center">
+        <h2 className="font-serif text-2xl" style={{ color: "#82273A" }}>
+          Homecoming Celebration
+        </h2>
+        <p className="mt-3">Date and time to be confirmed</p>
+      </section>
+    );
 
   return (
-    <section id="countdown" className="relative overflow-hidden px-6 py-9 text-center sm:py-12">
+    <section
+      id="countdown"
+      className="relative overflow-hidden px-6 py-9 text-center sm:py-12"
+    >
       {/* Side Mandala Watermarks */}
-      <div className="pointer-events-none absolute -left-24 top-1/2 -translate-y-1/2 opacity-[0.08]" aria-hidden="true">
+      <div
+        className="pointer-events-none absolute -left-24 top-1/2 -translate-y-1/2 opacity-[0.08]"
+        aria-hidden="true"
+      >
         <div style={{ width: "340px", height: "340px" }}>
           <div className="gpd-mandala" />
         </div>
       </div>
-      <div className="pointer-events-none absolute -right-24 top-1/2 -translate-y-1/2 opacity-[0.08]" aria-hidden="true">
+      <div
+        className="pointer-events-none absolute -right-24 top-1/2 -translate-y-1/2 opacity-[0.08]"
+        aria-hidden="true"
+      >
         <div style={{ width: "340px", height: "340px" }}>
           <div className="gpd-mandala" />
         </div>
@@ -70,7 +87,9 @@ export const WeddingCountdown: React.FC = () => {
             fontSize: "clamp(1.6rem, 4vw, 2.3rem)",
           }}
         >
-          {isSinhala ? "සුබ මොහොත එළඹෙන තුරු" : "Awaiting the Auspicious Moment"}
+          {isSinhala
+            ? "සොඳුරු සැමරුමට පිළිගන්නා තුරු"
+            : "Until we welcome you to the reception"}
         </h2>
 
         {/* Flourish */}
@@ -91,7 +110,8 @@ export const WeddingCountdown: React.FC = () => {
             style={{
               background: "#FFF5F4",
               border: "1px solid rgba(185, 70, 88, 0.4)",
-              boxShadow: "0 14px 30px -22px rgba(115,38,55,0.55), inset 0 1px 0 rgba(255,255,255,0.7)",
+              boxShadow:
+                "0 14px 30px -22px rgba(115,38,55,0.55), inset 0 1px 0 rgba(255,255,255,0.7)",
             }}
           >
             <span
@@ -105,7 +125,11 @@ export const WeddingCountdown: React.FC = () => {
             >
               {timeLeft.days}
             </span>
-            <span className="my-2 h-px w-7" style={{ background: "#DF8C95" }} aria-hidden="true" />
+            <span
+              className="my-2 h-px w-7"
+              style={{ background: "#DF8C95" }}
+              aria-hidden="true"
+            />
             <span
               className="text-[0.72rem]"
               style={{
@@ -123,7 +147,8 @@ export const WeddingCountdown: React.FC = () => {
             style={{
               background: "#FFF5F4",
               border: "1px solid rgba(185, 70, 88, 0.4)",
-              boxShadow: "0 14px 30px -22px rgba(115,38,55,0.55), inset 0 1px 0 rgba(255,255,255,0.7)",
+              boxShadow:
+                "0 14px 30px -22px rgba(115,38,55,0.55), inset 0 1px 0 rgba(255,255,255,0.7)",
             }}
           >
             <span
@@ -137,7 +162,11 @@ export const WeddingCountdown: React.FC = () => {
             >
               {timeLeft.hours}
             </span>
-            <span className="my-2 h-px w-7" style={{ background: "#DF8C95" }} aria-hidden="true" />
+            <span
+              className="my-2 h-px w-7"
+              style={{ background: "#DF8C95" }}
+              aria-hidden="true"
+            />
             <span
               className="text-[0.72rem]"
               style={{
@@ -155,7 +184,8 @@ export const WeddingCountdown: React.FC = () => {
             style={{
               background: "#FFF5F4",
               border: "1px solid rgba(185, 70, 88, 0.4)",
-              boxShadow: "0 14px 30px -22px rgba(115,38,55,0.55), inset 0 1px 0 rgba(255,255,255,0.7)",
+              boxShadow:
+                "0 14px 30px -22px rgba(115,38,55,0.55), inset 0 1px 0 rgba(255,255,255,0.7)",
             }}
           >
             <span
@@ -169,7 +199,11 @@ export const WeddingCountdown: React.FC = () => {
             >
               {timeLeft.minutes}
             </span>
-            <span className="my-2 h-px w-7" style={{ background: "#DF8C95" }} aria-hidden="true" />
+            <span
+              className="my-2 h-px w-7"
+              style={{ background: "#DF8C95" }}
+              aria-hidden="true"
+            />
             <span
               className="text-[0.72rem]"
               style={{
@@ -187,7 +221,8 @@ export const WeddingCountdown: React.FC = () => {
             style={{
               background: "#FFF5F4",
               border: "1px solid rgba(185, 70, 88, 0.4)",
-              boxShadow: "0 14px 30px -22px rgba(115,38,55,0.55), inset 0 1px 0 rgba(255,255,255,0.7)",
+              boxShadow:
+                "0 14px 30px -22px rgba(115,38,55,0.55), inset 0 1px 0 rgba(255,255,255,0.7)",
             }}
           >
             <span
@@ -201,7 +236,11 @@ export const WeddingCountdown: React.FC = () => {
             >
               {timeLeft.seconds}
             </span>
-            <span className="my-2 h-px w-7" style={{ background: "#DF8C95" }} aria-hidden="true" />
+            <span
+              className="my-2 h-px w-7"
+              style={{ background: "#DF8C95" }}
+              aria-hidden="true"
+            />
             <span
               className="text-[0.72rem]"
               style={{
@@ -219,7 +258,10 @@ export const WeddingCountdown: React.FC = () => {
           className="mt-6 text-[0.95rem]"
           style={{ fontFamily: "var(--font-sinhala)", color: "#906872" }}
         >
-          {config.event.year} {isSinhala ? config.event.monthSi : config.event.monthEn} {config.event.day} {isSinhala ? config.event.dayOfWeekSi : config.event.dayOfWeekEn}
+          {config.event.year}{" "}
+          {isSinhala ? config.event.monthSi : config.event.monthEn}{" "}
+          {config.event.day}{" "}
+          {isSinhala ? config.event.dayOfWeekSi : config.event.dayOfWeekEn}
         </p>
       </div>
     </section>

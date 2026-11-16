@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { InvitationIntroVideo } from "./InvitationIntroVideo";
 import { useLanguage } from "./LanguageContext";
 
 interface InvitationOpeningProps {
@@ -14,21 +15,28 @@ export const InvitationOpening: React.FC<InvitationOpeningProps> = ({
 }) => {
   const { lang, setLang, t, config, isSinhala } = useLanguage();
   const [closing, setClosing] = useState(false);
+  const [showIntro, setShowIntro] = useState(false);
 
-  if (isOpen) return null;
+  if (isOpen && !showIntro) return null;
 
   const handleOpen = () => {
-    // Trigger audio playback immediately on user click gesture
+    setShowIntro(true);
+  };
+
+  const handleIntroComplete = () => {
+    // Keep the existing invitation music behavior when the invitation appears.
     if (typeof window !== "undefined") {
       window.dispatchEvent(new CustomEvent("wedding:play-music"));
     }
     setClosing(true);
-    setTimeout(() => {
-      onOpen();
-    }, 600);
+    onOpen();
+    // Keep the overlay mounted until its black-to-invitation fade finishes.
+    setTimeout(() => setShowIntro(false), 850);
   };
 
   return (
+    <>
+    {showIntro && <InvitationIntroVideo src="/videos/wedding-intro.mp4" onComplete={handleIntroComplete} />}
     <div
       aria-hidden="false"
       data-lp-gate=""
@@ -181,5 +189,6 @@ export const InvitationOpening: React.FC<InvitationOpeningProps> = ({
         </div>
       </div>
     </div>
+    </>
   );
 };
