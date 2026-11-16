@@ -44,7 +44,7 @@ export const WeddingHero: React.FC = () => {
               fontFamily: "var(--font-sinhala)",
             }}
           >
-            {isSinhala ? "සාදර ඇරයුමයි !" : "Cordially Invited !"}
+            {isSinhala ? "සාදර ඇරයුමයි !" : "Heartfelt Invitation!"}
           </h1>
         </div>
 
@@ -64,36 +64,6 @@ export const WeddingHero: React.FC = () => {
 
         {/* 2-Column Parents and Couple Introduction */}
         <div className="mt-7 grid grid-cols-2 gap-5 sm:gap-10">
-          {/* Bride Intro */}
-          <div className="flex flex-col items-center gap-3">
-            <p
-              className="text-[0.95rem] leading-[1.8] sm:text-base"
-              style={{
-                fontFamily: "var(--font-sinhala)",
-                color: "#59353C",
-                whiteSpace: "pre-line",
-              }}
-            >
-              {isSinhala
-                ? config.couple.bride.parentsSi
-                : config.couple.bride.parentsEn}
-            </p>
-            <p
-              className="mt-auto"
-              style={{
-                fontFamily: "var(--font-sinhala)",
-                fontWeight: 700,
-                color: "#82273A",
-                fontSize: "clamp(1.7rem, 5.2vw, 2.5rem)",
-                lineHeight: 1.15,
-              }}
-            >
-              {isSinhala
-                ? config.couple.bride.nameOnlySi
-                : config.couple.bride.firstNameEn}
-            </p>
-          </div>
-
           {/* Groom Intro */}
           <div className="flex flex-col items-center gap-3">
             <p
@@ -121,6 +91,35 @@ export const WeddingHero: React.FC = () => {
               {isSinhala
                 ? config.couple.groom.nameOnlySi
                 : config.couple.groom.firstNameEn}
+            </p>
+          </div>
+          {/* Bride Intro */}
+          <div className="flex flex-col items-center gap-3">
+            <p
+              className="text-[0.95rem] leading-[1.8] sm:text-base"
+              style={{
+                fontFamily: "var(--font-sinhala)",
+                color: "#59353C",
+                whiteSpace: "pre-line",
+              }}
+            >
+              {isSinhala
+                ? config.couple.bride.parentsSi
+                : config.couple.bride.parentsEn}
+            </p>
+            <p
+              className="mt-auto"
+              style={{
+                fontFamily: "var(--font-sinhala)",
+                fontWeight: 700,
+                color: "#82273A",
+                fontSize: "clamp(1.7rem, 5.2vw, 2.5rem)",
+                lineHeight: 1.15,
+              }}
+            >
+              {isSinhala
+                ? config.couple.bride.nameOnlySi
+                : config.couple.bride.firstNameEn}
             </p>
           </div>
         </div>
@@ -169,8 +168,8 @@ export const WeddingHero: React.FC = () => {
           }}
         >
           {isSinhala
-            ? "අපගේ නිවසට පැමිණෙන ඔබ සාදරයෙන් පිළිගනිමු."
-            : "Warmly welcome you to our homecoming celebration."}
+            ? "ආදරයෙන් ඇරඹී, සෙනෙහසින් හැඩවුණු නව දිවි ගමනක සොඳුරු සැමරුම"
+            : "A Cinematic Celebration of Love, Family & New Beginnings"}
         </p>
 
         {/* Date Display */}
@@ -251,8 +250,8 @@ export const WeddingHero: React.FC = () => {
             }}
           >
             {isSinhala
-              ? `අපගේ නව ගමනේ සතුට බෙදා ගැනීමට\nඔබ සහ ඔබගේ පවුලේ සැමට\nආදරයෙන් ඇරයුම් කරමු.`
-              : `With joy in our hearts, we invite you and your family\nto celebrate our homecoming with us.`}
+              ? "පවුලේ සැමගේ ආශීර්වාදය මැද, අපගේ සොඳුරු මංගල දිවියේ නව ඇරඹුම සමරන්නට, ඔබගේ ආදරණීය සහභාගීත්වය හදපිරි සෙනෙහසින් අපේක්ෂා කරමු."
+              : "With the blessing of our families, we joyfully invite you to celebrate our homecoming."}
           </p>
         </div>
       </div>

@@ -103,7 +103,7 @@ export const weddingConfig: WeddingConfig = {
       fullNameSi: "ගිහානි වීරසේකර",
       nameOnlySi: "ගිහානි",
       parentsEn:
-        "Beloved daughter of\nMr. W. M. Waidyarathna Weerasekara\n&\nMrs. A. A. Wasantha Amarasinghe",
+        "Beloved daughter of\nMr. W. M. W. Weerasekara\n&\nMrs. A. A. W. Amarasinghe",
       parentsSi:
         "ඩබ්ලිව්. එම්. වෛද්‍යරත්න වීරසේකර මහතා හා \nඒ. ඒ. වසන්තා අමරසිංහ මැතිණියගේ\nආදරණිය දියණිය",
       phone: "0711193710",

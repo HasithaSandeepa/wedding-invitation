@@ -12,7 +12,9 @@ export const InvitationIntroVideo: React.FC<InvitationIntroVideoProps> = ({
   src,
   onComplete,
 }) => {
-  const [phase, setPhase] = useState<"playing" | "blackout" | "reveal">("playing");
+  const [phase, setPhase] = useState<"playing" | "blackout" | "reveal">(
+    "playing",
+  );
   const phaseRef = useRef("playing");
   const videoRef = useRef<HTMLVideoElement>(null);
   const completeRef = useRef(onComplete);
@@ -63,7 +65,8 @@ export const InvitationIntroVideo: React.FC<InvitationIntroVideoProps> = ({
       className="fixed inset-0 z-[950] overflow-hidden bg-black"
       style={{
         opacity: phase === "reveal" ? 0 : 1,
-        transition: phase === "reveal" ? "opacity 800ms ease-in-out" : undefined,
+        transition:
+          phase === "reveal" ? "opacity 800ms ease-in-out" : undefined,
         pointerEvents: phase === "reveal" ? "none" : "auto",
       }}
       aria-label="Invitation introduction video"
@@ -78,15 +81,21 @@ export const InvitationIntroVideo: React.FC<InvitationIntroVideoProps> = ({
         onEnded={startTransition}
         onError={startTransition}
         controls={false}
-        style={{ opacity: phase === "playing" ? 1 : 0, transition: "opacity 650ms ease-in-out" }}
+        style={{
+          opacity: phase === "playing" ? 1 : 0,
+          transition: "opacity 650ms ease-in-out",
+        }}
       />
       {phase === "playing" && (
         <button
           type="button"
           onClick={startTransition}
           aria-label="Skip introduction video"
-          className="absolute bottom-6 right-6 z-10 rounded-md bg-gray-600/90 px-5 py-2.5 text-sm font-semibold text-white shadow-lg transition-colors hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-          style={{ marginBottom: "env(safe-area-inset-bottom, 0px)", marginRight: "env(safe-area-inset-right, 0px)" }}
+          className="absolute bottom-6 right-6 z-10 rounded-md border border-slate-500 bg-gray-900/50 px-5 py-1 text-sm font-semibold text-white shadow-lg transition-colors hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+          style={{
+            marginBottom: "env(safe-area-inset-bottom, 0px)",
+            marginRight: "env(safe-area-inset-right, 0px)",
+          }}
         >
           Skip
         </button>

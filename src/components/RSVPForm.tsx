@@ -88,7 +88,7 @@ export const RSVPForm: React.FC<{
             fontSize: "clamp(1.6rem, 4vw, 2.3rem)",
           }}
         >
-          {isSinhala ? "ඔබගේ පිළිතුර අපේක්ෂාවෙන්" : "Confirm Attendance"}
+          {isSinhala ? "ඔබගේ පිළිතුර අපේක්ෂාවෙන්" : "Will you join us?"}
         </h2>
 
         {/* Flourish */}

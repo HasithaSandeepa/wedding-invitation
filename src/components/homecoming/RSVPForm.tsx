@@ -88,7 +88,7 @@ export const RSVPForm: React.FC<{
             fontSize: "clamp(1.6rem, 4vw, 2.3rem)",
           }}
         >
-          {isSinhala ? "පැමිණීම දන්වන්න" : "Confirm Attendance"}
+          {isSinhala ? "ඔබගේ පිළිතුර අපේක්ෂාවෙන්" : "Will you join us?"}
         </h2>
 
         {/* Flourish */}
@@ -107,9 +107,9 @@ export const RSVPForm: React.FC<{
           style={{ fontFamily: "var(--font-sinhala)", color: "#906872" }}
         >
           {isSinhala
-            ? "ඔබගේ පැමිණීම කාරුණිකව තහවුරු කරන්න."
+            ? "අපගේ ජීවිතයේ සොඳුරුම දිනය තවත්  සුන්දර කරගැනීමට, ඔබගේ ආදරණීය සහභාගීත්වය කාරුණිකව දන්වා සිටින මෙන් ආදරයෙන් ඉල්ලා සිටිමු."
             : eventId === "homecoming"
-              ? "Please let us know whether you will join us for the homecoming celebration."
+              ? "We would be honoured by your presence. Kindly let us know if you can join us."
               : "Please confirm your attendance."}
         </p>
 
@@ -123,10 +123,10 @@ export const RSVPForm: React.FC<{
         >
           {isSinhala
             ? eventId === "homecoming"
-              ? "කරුණාකර ඔබගේ පැමිණීම තහවුරු කරන්න"
+              ? "ඔබගේ පැමිණීම අපට ඉමහත් සතුටකි! 💛"
               : `කරුණාකර ${config.rsvp.deadlineDateSi} දිනට පෙර පිළිතුරු දෙන්න`
             : eventId === "homecoming"
-              ? "Please confirm your attendance."
+              ? "Your presence will bring us immense joy! 💛"
               : `Please respond by ${config.rsvp.deadlineDateEn}`}
         </p>
 

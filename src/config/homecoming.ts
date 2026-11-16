@@ -1,8 +1,5 @@
 import { weddingConfig, type WeddingConfig } from "./wedding";
 
-/** Homecoming-specific content. Shared couple identity lives in wedding.ts.
- * Edit the event, RSVP, gallery and music here without changing the wedding design.
- */
 export const homecomingConfig: WeddingConfig = {
   ...weddingConfig,
 
@@ -20,28 +17,29 @@ export const homecomingConfig: WeddingConfig = {
     timeEn: "10:00 AM",
     timeSi: "පෙ.ව. 10.00",
     traditionalAuspiciousTextSi:
-      "දෙදහස් විසිහතක් වු දුරුතු මස විසි තුන්වන සෙනසුරාදා\nපෙරවරු 10.00ට\nබණ්ඩාරවෙල තේ ට්‍රී රිසෝට් පරිශ්‍රයේදී",
+      "දෙදහස් විසිහතක් වු දුරුතු මස විසි තුන්වන සෙනසුරාදා\nපෙරවරු 10.00ට\nබණ්ඩාරවෙල Tea Tree Resort පරිශ්‍රයේදී",
     traditionalAuspiciousTextEn:
-      "On Saturday, the 23rd of January Two Thousand Twenty Seven\nat 10:00 in the morning\nat The Tea Tree Resort, Bandarawela",
+      "On Saturday, the 23rd of January\nTwo Thousand Twenty Seven\nat 10:00 AM\nat The Tea Tree Resort, Bandarawela",
     ceremony: {
-      titleEn: "Homecoming Celebration",
-      titleSi: "නිවසට කැන්දන් ඒමේ උත්සවය",
+      titleEn: "Homecoming Reception",
+      titleSi: "සදාතනික ආදරයක සොඳුරු ඇරඹුම",
       poruwaTimeEn: "Homecoming Celebration: 10:00 AM",
       poruwaTimeSi: "නිවසට කැන්දන් ඒමේ උත්සවය: පෙ.ව. 10.00",
-      receptionTimeEn: "Followed by the Homecoming Reception",
+      receptionTimeEn: "Followed by the Homecoming Banquet",
       receptionTimeSi: "ඉන් අනතුරුව භෝජන සංග්‍රහය",
       dressCodeEn: "Traditional / Formal Attire",
       dressCodeSi: "සාම්ප්‍රදායික හෝ විධිමත් ඇඳුමින්",
     },
     venue: {
       nameEn: "The Tea Tree Resort",
-      nameSi: "ද ටී ට්‍රී රිසෝට්",
+      nameSi: "Tea Tree Resort",
       hallEn: "The Tea Tree Resort",
-      hallSi: "ද ටී ට්‍රී රිසෝට්",
+      hallSi: "Tea Tree Resort",
       addressEn: "Kithal Ella Road, Heeloya, Bandarawela",
       addressSi: "කිතල් ඇල්ල පාර, හීල්ඔය, බණ්ඩාරවෙල",
       googleMapsUrl: "https://maps.app.goo.gl/MEYGPovFdeKAawVe8",
-      embedMapUrl: "https://maps.google.com/maps?q=The%20Tea%20Tree%20Resort%2C%20Kithal%20Ella%20Road%2C%20Heeloya%2C%20Bandarawela&z=15&output=embed",
+      embedMapUrl:
+        "https://maps.google.com/maps?q=The%20Tea%20Tree%20Resort%2C%20Kithal%20Ella%20Road%2C%20Heeloya%2C%20Bandarawela&z=15&output=embed",
       image: "/golden-poruwa-demo/homecoming-hotel.png",
     },
   },
