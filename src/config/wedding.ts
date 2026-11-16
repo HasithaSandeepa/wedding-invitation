@@ -129,8 +129,8 @@ export const weddingConfig: WeddingConfig = {
     ceremony: {
       titleEn: "Wedding Ceremony & Poruwa Rituals",
       titleSi: "මංගල උත්සවය සහ පෝරුවේ චාරිත්‍රය",
-      poruwaTimeEn: "Poruwa Ceremony: 8:30 AM",
-      poruwaTimeSi: "පෝරුවේ චාරිත්‍රය: පෙ. ව. 8.30 ට",
+      poruwaTimeEn: "Poruwa Ceremony: 10:00 AM",
+      poruwaTimeSi: "පෝරුවේ චාරිත්‍රය: පෙ. ව. 10.00 ට",
       receptionTimeEn: "Followed by the Wedding Banquet",
       receptionTimeSi: "ඉන් අනතුරුව මංගල භෝජන සංග්‍රහය",
       dressCodeEn: "Traditional / Formal Attire",
