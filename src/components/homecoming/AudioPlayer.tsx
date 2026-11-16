@@ -47,7 +47,12 @@ export const AudioPlayer: React.FC = () => {
 
   return (
     <>
-      <audio ref={audioRef} src="/golden-poruwa/music.mp3" loop preload="auto" />
+      <audio
+        ref={audioRef}
+        src="/golden-poruwa/homecoming.mp3"
+        loop
+        preload="auto"
+      />
       <button
         type="button"
         onClick={togglePlay}
@@ -57,7 +62,8 @@ export const AudioPlayer: React.FC = () => {
         style={{
           background: "linear-gradient(150deg, #DF8C95, #B94658 55%, #82273A)",
           color: "#FFF7F2",
-          boxShadow: "0 10px 22px -10px rgba(115,38,55,0.7), inset 0 1px 0 rgba(255,255,255,0.4)",
+          boxShadow:
+            "0 10px 22px -10px rgba(115,38,55,0.7), inset 0 1px 0 rgba(255,255,255,0.4)",
         }}
       >
         {isPlaying ? (
